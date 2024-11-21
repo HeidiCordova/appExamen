@@ -90,16 +90,15 @@ public class HomeFragment extends Fragment {
         btnFillRooms.setOnClickListener(btnFillRoomsOnClick);
         btnReadRooms.setOnClickListener(btnReadRoomsOnClick);
 
-        // Limpia todas las tablas antes de cualquier operación
-        Executors.newSingleThreadExecutor().execute(() -> {
-            AppDatabase.getInstance(requireContext()).clearAllTables();
-            Log.d("Database", "Todas las tablas han sido limpiadas");
-        });
-
 
     }
 
     private final View.OnClickListener btnFillRoomsOnClick = v -> {
+
+        Executors.newSingleThreadExecutor().execute(() -> {
+            AppDatabase.getInstance(requireContext()).clearAllTables();
+            Log.d("Database", "Todas las tablas han sido limpiadas");
+        });
 
         String[] vertexFiles = new String[]{"RoomVertex001.txt", "RoomVertex002.txt"};
 
